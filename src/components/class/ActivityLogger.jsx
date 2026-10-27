@@ -11,7 +11,7 @@ class ActivityLogger extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.lastAction !== this.props.lastAction && this.props.lastAction) {
-      const updatedLogs = [...this.state.logs, this.props.lastAction];
+      const updatedLogs = [...this.state.logs, this.props.lastAction].slice(-10);
       localStorage.setItem('taskActivityLogs', JSON.stringify(updatedLogs));
       this.setState({ logs: updatedLogs, showToast: true });
       this.toastTimeout = setTimeout(() => this.setState({ showToast: false }), 1800);
